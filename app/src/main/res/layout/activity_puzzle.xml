@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zenithstudios.ezwakealarm.PuzzleActivity"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="26 + 91 = ?"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="132dp"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:id="@+id/answerBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="180dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/question"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/question2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="26 x 92 = ?"
+        android:textSize="30sp"
+        android:layout_below="@+id/answerBox"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/answerBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="180dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_below="@+id/question2"
+        android:layout_alignStart="@+id/answerBox" />
+
+    <TextView
+        android:id="@+id/question3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:text="26 + 91 = 69"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/answerBox2"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:id="@+id/trueFalseRadioGroup"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/question3"
+        android:layout_alignStart="@+id/answerBox2">
+
+        <RadioButton
+            android:id="@+id/trueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="True"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/falseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:checked="false"
+            android:text="False"
+            android:textSize="15sp" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="378dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/trueFalseRadioGroup"
+        android:layout_centerHorizontal="true" />
+
+
+
+
+
+</RelativeLayout>
