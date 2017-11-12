@@ -153,6 +153,6 @@ public class PuzzleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-      //Do nothing
+        //Do nothing
     }
 }

@@ -36,6 +36,21 @@ public class AlarmPicker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
 
+        Context context = getApplicationContext();
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && !notificationManager.isNotificationPolicyAccessGranted()) {
+
+            Intent intent = new Intent(
+                    android.provider.Settings
+                            .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+
+            startActivity(intent);
+        }
+
 
 
         super.onCreate(savedInstanceState);
@@ -56,21 +71,6 @@ public class AlarmPicker extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Context context = getApplicationContext();
-
-                NotificationManager notificationManager =
-                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                        && !notificationManager.isNotificationPolicyAccessGranted()) {
-
-                    Intent intent = new Intent(
-                            android.provider.Settings
-                                    .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-
-                    startActivity(intent);
-                }
 
 
                 /*Calendar calendar = Calendar.getInstance();
