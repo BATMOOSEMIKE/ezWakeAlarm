@@ -449,8 +449,8 @@ public class MainActivity extends AppCompatActivity {
         //Create the intent for the alarm wakeup. IDs are weird numbers like 50 because apparently 1/2 etc are taken by default alarm app
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        pendingIntent2 = PendingIntent.getBroadcast(this, -1, intent, 0);
-        pendingIntent3 = PendingIntent.getBroadcast(this, -2, intent, 0);
+        pendingIntent2 = PendingIntent.getBroadcast(this, 1, intent, 0);
+        pendingIntent3 = PendingIntent.getBroadcast(this, 2, intent, 0);
 
 
 

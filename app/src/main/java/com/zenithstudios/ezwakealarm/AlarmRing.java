@@ -28,11 +28,18 @@ public class AlarmRing extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+
+
+        //For some reason neither of the following two lines work. They will play random songs that I used to use as alarm like Fallout Boy and Demi Lovato
+        //Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        //Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+
+        Uri alarmUri = RingtoneManager.getActualDefaultRingtoneUri(getApplicationContext(), RingtoneManager.TYPE_RINGTONE);
         AudioManager mAudioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         int max = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+        int highVolume = (int)0.8*max;
         mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_RING, max, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_RING, highVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
         if (alarmUri == null)
         {
             alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -51,7 +58,6 @@ public class AlarmRing extends Service {
         }, 1000*1, 1000*1);
 
         /*
-
         player = MediaPlayer.create(this, alarmUri);
         player.setLooping(true);
         player.start();
