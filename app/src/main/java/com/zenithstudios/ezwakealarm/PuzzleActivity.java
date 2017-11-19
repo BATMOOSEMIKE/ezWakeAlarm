@@ -2,7 +2,9 @@ package com.zenithstudios.ezwakealarm;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +31,13 @@ public class PuzzleActivity extends AppCompatActivity {
     Random random = new Random();
     String answer, answer2;
     RadioButton trueButton, falseButton;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+    long time1, time2, time3;
+
+    int smallest;
+
 
 
     @Override
@@ -40,6 +49,57 @@ public class PuzzleActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor=pref.edit();
+
+        time1 = pref.getLong("timeOne", 0);
+        time2 = pref.getLong("timeTwo", 0);
+        time3 = pref.getLong("timeThree", 0);
+
+        smallest = 0;
+
+        if(time1 != 0){
+            if((time1 < time2)&& (time1<time3)){
+                smallest = 1;
+            }
+
+            else if((time1 <time2)&&(time3 == 0)){
+                smallest = 1;
+            }
+
+            else if((time1 < time3) && (time2 == 0)){
+                smallest = 1;
+            }
+
+            else if((time2 == 0)&& (time3 == 0)){
+                smallest = 1;
+            }
+        }
+
+        else if(time2 != 0){
+            if(time2<time3 || time3==0){
+                smallest = 2;
+            }
+        }
+
+        else if(time3!=0){
+            smallest = 3;
+        }
+
+        if(smallest == 1){
+            editor.putBoolean("toggleOne", false);
+        }
+        else if(smallest == 2){
+            editor.putBoolean("toggleTwo", false);
+        }
+        else if(smallest == 3){
+            editor.putBoolean("toggleThree", false);
+        }
+
+        editor.apply();
+
+
 
         nextButton = (Button)findViewById(R.id.nextButton);
         answerBox = (EditText)findViewById(R.id.answerBox);

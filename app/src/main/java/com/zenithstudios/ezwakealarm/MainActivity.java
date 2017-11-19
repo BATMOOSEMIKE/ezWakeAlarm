@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     int hour1, hour2, hour3, minute1, minute2, minute3, count;
     int toastHour, toastMinute;
+    Calendar calendar;
 
     long time1, time2, time3, toastTime;
 
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         editor=pref.edit();
+
+        calendar = Calendar.getInstance();
 
         alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
@@ -118,12 +121,49 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         editor.putInt("AlarmHour1", hour2);
                                         editor.putInt("AlarmMinute1", minute2);
+
+                                        if(toggleTwo){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour2);
+                                            calendar.set(Calendar.MINUTE, minute2);
+                                            time1=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time1)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time1 += (1000*60*60*12);
+                                                else
+                                                    time1 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeOne", time1);
+
+
+                                        }
                                     }
 
                                     if(hour3!=90)
                                     {
                                         editor.putInt("AlarmHour2", hour3);
                                         editor.putInt("AlarmMinute2", minute3);
+
+                                        if(toggleThree){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour3);
+                                            calendar.set(Calendar.MINUTE, minute3);
+                                            time2=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time2)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time2 += (1000*60*60*12);
+                                                else
+                                                    time2 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeTwo", time2);
+                                        }
+
                                     }
 
                                     if(toggleTwo){
@@ -194,12 +234,46 @@ public class MainActivity extends AppCompatActivity {
                                     if(hour1!=90){
                                         editor.putInt("AlarmHour1", hour1);
                                         editor.putInt("AlarmMinute1", minute1);
+
+                                        if(toggleOne){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour1);
+                                            calendar.set(Calendar.MINUTE, minute1);
+                                            time1=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time1)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time1 += (1000*60*60*12);
+                                                else
+                                                    time1 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeOne", time1);
+                                        }
                                     }
 
                                     if(hour3!=90)
                                     {
                                         editor.putInt("AlarmHour2", hour3);
                                         editor.putInt("AlarmMinute2", minute3);
+
+                                        if(toggleThree){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour3);
+                                            calendar.set(Calendar.MINUTE, minute3);
+                                            time2=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time2)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time2 += (1000*60*60*12);
+                                                else
+                                                    time2 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeTwo", time2);
+                                        }
                                     }
 
                                     if(toggleThree){
@@ -258,12 +332,46 @@ public class MainActivity extends AppCompatActivity {
                                     if(hour1!=90){
                                         editor.putInt("AlarmHour1", hour1);
                                         editor.putInt("AlarmMinute1", minute1);
+
+                                        if(toggleOne){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour1);
+                                            calendar.set(Calendar.MINUTE, minute1);
+                                            time1=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time1)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time1 += (1000*60*60*12);
+                                                else
+                                                    time1 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeOne", time1);
+                                        }
                                     }
 
                                     if(hour2!=90)
                                     {
                                         editor.putInt("AlarmHour2", hour2);
                                         editor.putInt("AlarmMinute2", minute2);
+
+                                        if(toggleTwo){
+                                            calendar.set(Calendar.HOUR_OF_DAY, hour2);
+                                            calendar.set(Calendar.MINUTE, minute2);
+                                            time2=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
+                                            if(System.currentTimeMillis()>time2)
+                                            {
+                                                if (calendar.AM_PM == 0)
+                                                    time2 += (1000*60*60*12);
+                                                else
+                                                    time2 += (1000*60*60*24);
+
+
+                                            }
+
+                                            editor.putLong("timeTwo", time2);
+                                        }
                                     }
 
                                     if(toggleThree){
@@ -464,14 +572,14 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("toggleOne", toggleOne);
                     editor.apply();
 
-                    Calendar calendar = Calendar.getInstance();
+                    //Calendar calendar = Calendar.getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, hour1);
                     calendar.set(Calendar.MINUTE, minute1);
 
 
                     //Important! getTimeInMillis returns time relative to the epoch (long time ago), not relative to beginning of the day or to the currentTime.
 
-                    time1=(calendar.getTimeInMillis()/*-(calendar.getTimeInMillis()%60000)*/);
+                    time1=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
 
                     if(System.currentTimeMillis()>time1)
                     {
@@ -525,11 +633,11 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("toggleTwo", toggleTwo);
                     editor.apply();
 
-                    Calendar calendar = Calendar.getInstance();
+                    //Calendar calendar = Calendar.getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, hour2);
                     calendar.set(Calendar.MINUTE, minute2);
 
-                    time2=(calendar.getTimeInMillis());
+                    time2=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
                     if(System.currentTimeMillis()>time2)
                     {
                         if (calendar.AM_PM == 0)
@@ -579,11 +687,11 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean("toggleThree", toggleThree);
                     editor.apply();
 
-                    Calendar calendar = Calendar.getInstance();
+                    //Calendar calendar = Calendar.getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, hour3);
                     calendar.set(Calendar.MINUTE, minute3);
 
-                    time3=(calendar.getTimeInMillis());
+                    time3=(calendar.getTimeInMillis()-(calendar.getTimeInMillis()%60000));
                     if(System.currentTimeMillis()>time3)
                     {
                         if (calendar.AM_PM == 0)
