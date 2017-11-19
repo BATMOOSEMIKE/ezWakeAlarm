@@ -215,4 +215,5 @@ public class PuzzleActivity extends AppCompatActivity {
     public void onBackPressed() {
         //Do nothing
     }
+
 }

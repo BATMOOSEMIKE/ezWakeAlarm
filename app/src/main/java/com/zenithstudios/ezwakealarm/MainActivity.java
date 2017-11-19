@@ -731,10 +731,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: Make the toggle state off when alarm puzzle is solved.
-        // Set three alarm times, and then compare whichever one is smallest in puzzleactivity to see which toggle to turn off.
-        // Then set that alarmtime to null/remove it.
-        //Make sure to also set alarmtime to null whenever the pendingIntent is cancelled.
+        //TODO: GET PEOPLE TO TEST
 
 
 
@@ -764,5 +761,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     */
+
 
 }
