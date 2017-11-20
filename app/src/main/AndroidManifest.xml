@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zenithstudios.ezwakealarm">
+
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <application
@@ -9,7 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,22 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AlarmPicker"
+        <activity
+            android:name=".AlarmPicker"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".AlarmReceiver"
-            android:screenOrientation="portrait"/>
+        <receiver
+            android:name=".AlarmReceiver"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".PuzzleActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PuzzleActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".AlarmRing"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"></service>
 
-
-        </service>
+        <activity android:name=".Instructions"></activity>
     </application>
 
 </manifest>

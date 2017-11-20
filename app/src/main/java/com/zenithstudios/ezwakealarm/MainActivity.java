@@ -1,6 +1,7 @@
 package com.zenithstudios.ezwakealarm;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,11 +9,14 @@ import android.content.Intent;
 import java.util.Calendar;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -407,7 +411,28 @@ public class MainActivity extends AppCompatActivity {
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AlarmPicker.class));
+
+                Context context = getApplicationContext();
+
+                NotificationManager notificationManager =
+                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                        && !notificationManager.isNotificationPolicyAccessGranted()) {
+
+                    Toast.makeText(MainActivity.this, "This app requires do not disturb permissions", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(
+                            android.provider.Settings
+                                    .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+
+                    startActivity(intent);
+                }
+
+                else{
+                    startActivity(new Intent(MainActivity.this, AlarmPicker.class));
+                }
+
             }
         });
 
@@ -731,10 +756,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: GET PEOPLE TO TEST
+        //TODO: Add instructions for idiots
+        //TODO: Make toast when asking for notifications
 
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_instructions) {
+            Intent goToInstructions = new Intent(MainActivity.this, Instructions.class);
+            startActivity(goToInstructions);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

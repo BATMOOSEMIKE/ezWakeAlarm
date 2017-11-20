@@ -209,7 +209,8 @@
         android:src="@drawable/ic_add_black_24dp"
         app:elevation="5dp"
         app:fabSize="normal"
-        android:layout_below="@+id/card_view3"
-        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
         android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

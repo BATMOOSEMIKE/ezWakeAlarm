@@ -89,12 +89,15 @@ public class PuzzleActivity extends AppCompatActivity {
 
         if(smallest == 1){
             editor.putBoolean("toggleOne", false);
+            editor.remove("timeOne");
         }
         else if(smallest == 2){
             editor.putBoolean("toggleTwo", false);
+            editor.remove("timeTwo");
         }
         else if(smallest == 3){
             editor.putBoolean("toggleThree", false);
+            editor.remove("timeThree");
         }
 
         editor.apply();

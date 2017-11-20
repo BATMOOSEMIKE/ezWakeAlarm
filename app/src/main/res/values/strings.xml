@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ezWake</string>
+    <string name="action_instructions">Instructions</string>
 </resources>
