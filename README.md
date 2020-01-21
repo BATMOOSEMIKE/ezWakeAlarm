@@ -1,4 +1,4 @@
-#About ezWake
+# About ezWake
 
 ezWake is an innovative and simple app for the busy person who can’t afford to accidentally fall back asleep. While normal alarm clocks have alluring snooze buttons, ezWake will ensure that you have woken up before allowing you to stop the alarm.
 
@@ -19,7 +19,7 @@ generated math questions.
 - You can toggle alarms on and off using the switches on the home page.
 - You can clear existing alarms to create new ones by holding on an alarm.
 
-#Screenshots
+# Screenshots
 
 <p align="center">
   <img src="https://lh3.googleusercontent.com/_vV3ZXazHjjt2KUk1LZiy32dcJRSJ33OrzLr4Sn7ftqsWpfgNBl-tl55PCjDFtOi3cct=w1322-h1642-rw" width="256">
